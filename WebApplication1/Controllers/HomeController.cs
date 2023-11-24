@@ -1,21 +1,33 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System.Diagnostics;
+using WebApplication1.Areas.Admin.Data;
+using WebApplication1.Areas.Admin.Models;
+using WebApplication1.Helpers;
 using WebApplication1.Models;
 
 namespace WebApplication1.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly ILogger<HomeController> _logger;
+        private readonly AdminDbContext _context;
+        private readonly IWebHostEnvironment _env;
 
-        public HomeController(ILogger<HomeController> logger)
+        public HomeController(AdminDbContext context, IWebHostEnvironment env)
         {
-            _logger = logger;
+            _env = env;
+            _context = context;
         }
 
         public IActionResult Index()
         {
-            return View();
+            List<SliderModel> models = _context.Slider.ToList();
+
+            foreach(SliderModel model in models)
+            {
+                model.ImagePath = Utils.ConvertAbsToURI(_env.WebRootPath, model.ImagePath);
+            }
+            return View(models);
         }
 
         public IActionResult Privacy()

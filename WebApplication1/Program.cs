@@ -1,5 +1,5 @@
 using Microsoft.EntityFrameworkCore;
-using WebApplication1.Areas.Data;
+using WebApplication1.Areas.Admin.Data;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -30,7 +30,7 @@ app.UseAuthorization();
 
 app.MapControllerRoute(
     name: "admin",
-    pattern: "{area:exists}/{controller=Manage}/{action=Index}/{id?}");
+    pattern: "{area:exists}/{controller=Slider}/{action=Show}/{id?}");
 
 
 app.MapControllerRoute(
