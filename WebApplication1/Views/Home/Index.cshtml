@@ -11,8 +11,8 @@
 @foreach(SliderModel m in @Model)
 {
     <div class="single-slider">
-        <div class="slider-image">
-            <img src="@m.ImagePath" style="width: 100vw;" alt="slider">
+        <div class="slider-image overflow-hidden">
+            <img src="@m.ImagePath" style="height: 800px; width: 100vw;object-fit:contain" alt="slider">
         </div>
         <div class="slider-content-wrapper">
             <div class="container-fluid custom-container">

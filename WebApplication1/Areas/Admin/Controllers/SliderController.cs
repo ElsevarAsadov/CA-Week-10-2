@@ -150,7 +150,8 @@ namespace WebApplication1.Areas.Admin.Controllers
 
             if(newModel.ImageFile == null)
             {
-                return View();
+                ModelState.AddModelError("ImageFile", "Image Required");
+                return View("Update");
             }
 
 
@@ -164,7 +165,7 @@ namespace WebApplication1.Areas.Admin.Controllers
 
             if (!ModelState.IsValid)
             {
-                return View();
+                return RedirectToAction("Update");
             }
 
             try
